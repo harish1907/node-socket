@@ -13,8 +13,7 @@
         console.log("Connected to the server!");
       });
 
-      socket.emit("join trade", "join trade");
-      socket.emit("filterDataGet", { identifier: ["salt", "kaju"] });
+      socket.emit("filterDataGet", { identifier: ["salt", "pulse"] });
       socket.on("filterDataSend", (data) => {
         console.log("filterDataSend", data);
       });
