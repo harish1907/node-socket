@@ -6,14 +6,20 @@ const socketHandler = (io) => {
 
     io.emit("allData", await productSchema.find({}));
 
-    socket.on("filterData", async (data) => {
-      setInterval(async () => {
-        socket.emit(
-          "filterData",
-          await productSchema.find({ name: { $in: data.identifier } })
-        );
-      }, 1000);
-    });
+    socket.on("join trade", tradeId => {
+      console.log('tradeId', tradeId)
+      socket.join(tradeId);
+
+      socket.on("filterDataGet", async (data) => {
+        console.log('data', data)
+        setInterval(async () => {
+          socket.emit(
+            "filterDataSend",
+            await productSchema.find({ name: { $in: data.identifier } })
+          );
+        }, 1000);
+      });
+    })
 
     // Set up a disconnect event
     socket.on("disconnect", () => {
