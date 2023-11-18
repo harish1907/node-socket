@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const { database, port } = require("./config/keys");
 const chalk = require("chalk");
-const productSchema = require("./models/product.models");
 const socketIO = require("socket.io");
 const http = require("http");
 const socketHandler = require("./socket/socketIoHandler");
