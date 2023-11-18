@@ -34,9 +34,6 @@ app.use(cors(corsOptions));
 
 // Set up a connection event
 socketHandler(io);
-setInterval(async () => {
-  io.emit("allData", await productSchema.find({}));
-}, 1000);
 // -----------------------
 
 mongoose.set("useCreateIndex", true);
