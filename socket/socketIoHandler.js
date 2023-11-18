@@ -11,7 +11,6 @@ const socketTestCase = (io) => {
     console.log("A user connected");
 
     socket.on("allDataGet", () => {
-      console.log("socket.id", socket.id);
       const allDataInterval = setInterval(async () => {
         io.to(socket.id).emit("allData", await productSchema.find({}));
       }, 1000);
