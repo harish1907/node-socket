@@ -15,6 +15,11 @@ const socketTestCase = (io) => {
         io.to(socket.id).emit("allData", await productSchema.find({}));
       }, 1000);
       userIntervals.allData[socket.id] = allDataInterval;
+
+      socket.on("allDataOff", () => {
+        clearInterval(userIntervals.allData[socket.id]);
+        delete userIntervals.allData[socket.id];
+      });
     });
 
     socket.on("filterDataGet", async (data) => {
